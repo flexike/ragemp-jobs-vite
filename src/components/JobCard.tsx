@@ -12,20 +12,19 @@ interface JobCardProps {
 function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLevel }: JobCardProps) {
 
     return (
-
         // create Job Card
         // if DISABLED = ADD Disabled Class; if (CurrentLvl === TotalLvl) = ADD Completed class
         <div className={`job-card 
         
         ${ jobLocked ? "job-card-disabled" : ""} 
-        ${ jobCurrentLvl === jobTotalLvls ? "job-max-card" : ""}
+        ${ jobCurrentLvl >= jobTotalLvls ? "job-max-card" : ""}
         
         `}>
             <div className="job-card-container">
 
                 {
                     // if (CurrentLvl === TotalLvl) then create Name + CROWN + div to wrap it together
-                    jobCurrentLvl === jobTotalLvls ? (
+                    jobCurrentLvl >= jobTotalLvls ? (
                         <div className="job-maxed-name-wrapper">
                             <h3 className="job-max-card-name">{jobName}</h3>
                             <img src={CrownIconSVG} alt="crownSVG" className="CrownIconSVG"/>
@@ -40,7 +39,7 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
                     jobLocked ? (
                         <h5 className="job-card-progress">Недоступно</h5>
                     ) : // if (jobCurrentLvl === jobTotalLvls) then render text about Completing and call EXPBar
-                        jobCurrentLvl === jobTotalLvls ? (
+                        jobCurrentLvl >= jobTotalLvls ? (
                         <>
                         <h5 className="job-card-progress">У вас максимальний рівень</h5>
                             <div className="job-card-exp">
@@ -106,9 +105,6 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
 
     // create EXP BAR
     function createExpBar( jobTotalLvls: number, currentLvl: number) {
-
-        // if current lvl lower or same as total lvl then
-        if (currentLvl <= jobTotalLvls) {
             // create ARRAY (of divs with uniq index) ACCORDING jobTotalLVLs lenght
             return Array.from({ length: jobTotalLvls }, (_, index) => {
 
@@ -125,7 +121,7 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
                     <div key={index}
                         className={`ExpBar 
                         ${isFilled ? 'filled' : ''} 
-                        ${jobTotalLvls === currentLvl ? 'completed' : ''}
+                        ${currentLvl >= jobTotalLvls ? 'completed' : ''}
                         `}
                     >
                         <div className={`
@@ -137,21 +133,6 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
                     </div>
                 );
             });
-
-        } else {
-            // if current lvl higher than total render this
-            return Array.from({length: jobTotalLvls}, (_, index) => (
-                <div
-                    key={index}
-                    className={
-                        `ExpBar 
-                    ${index < currentLvl ? 'filled' : ''} 
-                    ${jobTotalLvls === currentLvl ? 'completed' : ''}
-                `}
-                >
-                </div>
-            ));
-        }
     }
 }
 
