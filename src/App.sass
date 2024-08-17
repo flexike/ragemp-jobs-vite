@@ -1,0 +1,93 @@
+$bg-color: #222222
+$bg-not-used: #333333
+
+.job-section
+  min-height: 100vh
+  height: 100%
+  width: 100%
+  background-color: $bg-color
+  overflow: hidden
+
+.job-container
+  margin: 0 auto
+  height: 100%
+  width: 100%
+  padding-left: 2rem
+  padding-right: 0.95rem
+
+  display: flex
+  flex-direction: column
+
+  padding-bottom: 2rem
+  overflow: hidden
+/*background-color: white;*/
+
+/* === HEADER === */
+.job-header
+  margin-top: 2rem
+  height: 2.2rem
+  width: 100%
+  background-color: $bg-not-used
+
+/* === MAIN WRAPPER ===*/
+.job-main-block
+  //
+  height: 100%
+  width: 100%
+  //
+  margin-top: 2rem
+  display: flex
+  gap: 2rem
+
+/*background-color: blue;*/
+
+
+/* === ASIDE === */
+.job-aside
+  //
+  min-height: 950px
+  min-width: 260px
+  //
+  background-color: $bg-not-used
+
+
+/* === JOB NONE === */
+.job-none
+  height: 100vh
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  color: white
+/*background-color: red;*/
+
+.job-none h5
+  font-family: "Gilroy-Regular", sans-serif
+  font-weight: 1
+  font-size: 36px
+  line-height: 43px
+
+
+/* === JOBS WRAPPER === */
+.job-main
+  height: 100%
+  display: flex
+  flex-flow: row wrap
+  gap: 1rem
+/*display: grid;*/
+/*grid-template-columns: repeat(4, 1fr);*/
+/*grid-auto-rows: 8.5rem;*/
+
+/*grid-column-gap: 1.063rem;*/
+/*grid-row-gap: 1.063rem;*/
+/*!*background-color: white;*!*/
+
+
+@media only screen and (min-height: 800px)
+.job-main
+  /*background-color: blue;*/
+  width: 100%
+  height: 100%
+  display: flex
+  flex-flow: row wrap
+  gap: 1rem

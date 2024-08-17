@@ -1,7 +1,5 @@
-import React from 'react';
-import './jobcard.css'
+import './jobcard.sass'
 import CrownIconSVG from "../assets/crown.svg"
-import { createElement } from "react";
 
 interface JobCardProps {
     jobName: string;
@@ -61,9 +59,8 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
     // create EXP BAR
     function createExpBar( jobTotalLvls: number, currentLvl: number) {
 
-        // if there is decimals after current lvl; EXMPL Current lvl is 1.5, 2.7, 2.9 etc.
-        if (currentLvl % 1 !== 0 && currentLvl <= jobTotalLvls) {
-
+        // if current lvl lower or same as total lvl then
+        if (currentLvl <= jobTotalLvls) {
             // create ARRAY (of divs with uniq index) ACCORDING jobTotalLVLs lenght
             return Array.from({ length: jobTotalLvls }, (_, index) => {
 
@@ -74,7 +71,7 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
                 const isCurrentFilled = index === Math.floor(currentLvl);
 
                 // width calculator for current progress
-                let currentLVLperc:number = currentLvl % 1 * 100;
+                const currentLVLperc:number = currentLvl % 1 * 100;
 
                 return (
                     <div key={index}
@@ -94,7 +91,7 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
             });
 
         } else {
-            // if there is no decimals after Current lvl; EXMPL: currentLvl is 1, 2 etc.
+            // if current lvl higher than total render this
             return Array.from({length: jobTotalLvls}, (_, index) => (
                 <div
                     key={index}

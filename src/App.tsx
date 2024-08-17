@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import './App.css';
+import './App.sass';
 import JOBSfromSERVER from "./jobs.json";
 import JobCard from "./components/JobCard";
 
