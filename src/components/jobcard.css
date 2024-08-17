@@ -1,0 +1,165 @@
+@import url(https://db.onlinewebfonts.com/c/1dc8ecd8056a5ea7aa7de1db42b5b639?family=Gilroy-Regular);
+@import url(https://db.onlinewebfonts.com/c/000833a3a58fb083c44b9de42c2ff0a2?family=Gilroy-SemiBold);
+/* === JOB CARD === */
+.job-card{
+    background: radial-gradient(circle, rgba(55,55,55,1) 5%, rgba(41,41,41,1) 100%);
+    width: 23.625rem;
+    height: 136px;
+    border: 0.1rem solid #373737;
+    border-radius: 0.2rem;
+    color: white;
+
+    transition: all ease-out 200ms;
+}
+
+.job-card-container{
+    width: 100%;
+    padding-inline: 15px;
+    line-height: 24px;
+}
+
+/* === JOB CARD OTHERS PROPS === */
+.job-card-name{
+    margin-top: 14px;
+    width: 100%;
+
+    font-family: "Gilroy-SemiBold", sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.job-card-progress{
+    margin-top: 41px;
+    width: 100%;
+
+    font-family: "Gilroy-Regular", sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    color: rgba(255,255,255, 55%);
+}
+
+.job-card-exp{
+    margin-top: 8px;
+    width: 100%;
+    line-height: 0;
+}
+
+.job-card:hover{
+    background: radial-gradient(circle, rgb(64, 64, 64) 5%, rgb(52, 52, 52) 100%);
+    border: 0.1rem solid #525252;
+}
+
+.job-card:hover .job-card-progress{
+    color: white;
+}
+
+/* === DISABLED === */
+.job-card-disabled{
+    background: radial-gradient(circle, rgba(55,55,55,1) 5%, rgba(41,41,41,1) 100%);
+    width: 23.625rem;
+    height: 136px;
+    border: 0.1rem solid #333333;
+    border-radius: 0.2rem;
+    color: white;
+}
+
+/* === MAX LVL REACHED ===*/
+.job-max-card{
+    background: radial-gradient(circle, rgb(29, 52, 29) 5%, rgb(30, 41, 29) 100%);
+    width: 23.625rem;
+    height: 136px;
+    border: 0.1rem solid #1d321c;
+    border-radius: 0.2rem;
+    color: white;
+
+    transition: all ease-out 200ms;
+}
+
+.job-max-card:hover{
+    background: radial-gradient(circle, rgb(29, 63, 28) 5%, rgb(29, 52, 29) 100%);
+    border: 0.1rem solid #1c531b;
+}
+
+.job-max-card:hover .job-card-progress{
+    color: white;
+}
+
+.job-maxed-name-wrapper{
+    margin-top: 10px;
+    height: 25px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.job-max-card-name{
+    font-family: "Gilroy SemiBold", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    height: 1rem;
+}
+
+.CrownIconSVG{
+    margin-top: 0.6rem;
+    width: 1.3rem;
+    height: 1.1rem;
+}
+
+/* === JOB EXP === */
+.job-card-exp{
+    width: 100%;
+    height: 0.3rem;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 1%;
+
+    /*background-color: white;*/
+}
+
+/* === LVL Empty === */
+.ExpBar {
+    width: 20%;
+    background-color: #5e5e5e;
+}
+
+/* === CURRENT LVL FILLED === */
+.ExpBar.filled {
+    background-color: #11e7fd;
+    box-shadow: 0px 0px 11px 0px #11E9FF8C;
+}
+
+/* === ROUND first & last === */
+.ExpBar:first-child{
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.ExpBar:last-child{
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.ExpBar.halffilled{
+    background-color: #11e7fd;
+    box-shadow: 0px 0px 11px 0px #11E9FF8C;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/* === CURRENT FILLED === */
+.currentFilled{
+    height: 100%;
+    background-color: #11e7fd;
+    box-shadow: 0px 0px 11px 0px #11E9FF8C;
+}
+
+/* === COMPLETED === */
+.ExpBar.completed{
+    background-color: #16fd11;
+    box-shadow: 0px 0px 11px 0px #16FF118C;
+}
+
