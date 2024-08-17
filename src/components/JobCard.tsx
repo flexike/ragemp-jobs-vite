@@ -10,51 +10,99 @@ interface JobCardProps {
 }
 
 function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLevel }: JobCardProps) {
-    // IF JOB is disabled, render this
-    if(jobLocked) {
-        return (
-            <div className="job-card-disabled">
-                <div className="job-card-container">
-                    <h3 className="job-card-name">{jobName}</h3>
-                    <h5 className="job-card-progress">Недоступно</h5>
-                </div>
-            </div>
-        )
-    }
 
-    // IF job is complete, render this
-    if(jobCurrentLvl === jobTotalLvls) {
-        return(
-            <div className="job-max-card">
-                <div className="job-card-container">
-
-                    <div className="job-maxed-name-wrapper">
-                        <h3 className="job-max-card-name">{jobName}</h3>
-                        <img src={CrownIconSVG} alt="crownSVG" className="CrownIconSVG"/>
-                    </div>
-
-                    <h5 className="job-card-progress">У вас максимальний рівень</h5>
-                    <div className="job-card-exp">
-                        {createExpBar(jobTotalLvls, jobCurrentLvl)}
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-
-    // IF Job is in progress, render this
     return (
-        <div className="job-card">
+
+        // create Job Card
+        // if DISABLED = ADD Disabled Class; if (CurrentLvl === TotalLvl) = ADD Completed class
+        <div className={`job-card 
+        
+        ${ jobLocked ? "job-card-disabled" : ""} 
+        ${ jobCurrentLvl === jobTotalLvls ? "job-max-card" : ""}
+        
+        `}>
             <div className="job-card-container">
-                <h3 className="job-card-name">{jobName}</h3>
-                <h5 className="job-card-progress">До наступного рівня необхідно ще 1200 Exp</h5>
-                <div className="job-card-exp">
-                    {createExpBar(jobTotalLvls, jobCurrentLvl)}
-                </div>
+
+                {
+                    // if (CurrentLvl === TotalLvl) then create Name + CROWN + div to wrap it together
+                    jobCurrentLvl === jobTotalLvls ? (
+                        <div className="job-maxed-name-wrapper">
+                            <h3 className="job-max-card-name">{jobName}</h3>
+                            <img src={CrownIconSVG} alt="crownSVG" className="CrownIconSVG"/>
+                        </div>
+                    ) : // if (CurrentLvl === TotalLvl) is not true, leave name
+                        (
+                        <h3 className="job-card-name">{jobName}</h3>
+                    )
+                }
+                {
+                    // if Job IS disabled, render disabled and nothing else
+                    jobLocked ? (
+                        <h5 className="job-card-progress">Недоступно</h5>
+                    ) : // if (jobCurrentLvl === jobTotalLvls) then render text about Completing and call EXPBar
+                        jobCurrentLvl === jobTotalLvls ? (
+                        <>
+                        <h5 className="job-card-progress">У вас максимальний рівень</h5>
+                            <div className="job-card-exp">
+                                {createExpBar(jobTotalLvls, jobCurrentLvl)}
+                            </div>
+                        </>
+                    ) : // IF job isn't locked and completed, render this
+                            (
+                    <>
+                     <h5 className="job-card-progress">До наступного рівня необхідно ще 1200 Exp</h5>
+                          <div className="job-card-exp">
+                            {createExpBar(jobTotalLvls, jobCurrentLvl)}
+                          </div>
+                    </>
+                )
+                }
             </div>
         </div>
     )
+
+    // IF JOB is disabled, render this
+    // if (jobLocked) {
+    //     return (
+    //         <div className="job-card-disabled">
+    //             <div className="job-card-container">
+    //                 <h3 className="job-card-name">{jobName}</h3>
+    //                 <h5 className="job-card-progress">Недоступно</h5>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+    // IF job is complete, render this
+    // if(jobCurrentLvl === jobTotalLvls) {
+    //     return(
+    //         <div className="job-max-card">
+    //             <div className="job-card-container">
+    //
+    //                 <div className="job-maxed-name-wrapper">
+    //                     <h3 className="job-max-card-name">{jobName}</h3>
+    //                     <img src={CrownIconSVG} alt="crownSVG" className="CrownIconSVG"/>
+    //                 </div>
+    //
+    //                 <h5 className="job-card-progress">У вас максимальний рівень</h5>
+    //                 <div className="job-card-exp">
+    //                     {createExpBar(jobTotalLvls, jobCurrentLvl)}
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+    // IF Job is in progress, render this
+    // return (
+    //     <div className="job-card">
+    //         <div className="job-card-container">
+    //             <h3 className="job-card-name">{jobName}</h3>
+    //             <h5 className="job-card-progress">До наступного рівня необхідно ще 1200 Exp</h5>
+    //             <div className="job-card-exp">
+    //                 {createExpBar(jobTotalLvls, jobCurrentLvl)}
+    //             </div>
+    //         </div>
+    //     </div>
+    // )
 
     // create EXP BAR
     function createExpBar( jobTotalLvls: number, currentLvl: number) {
