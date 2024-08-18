@@ -103,18 +103,14 @@ $bar-complete-col: #16fd11
   display: flex
   justify-content: space-between
   flex-direction: row
-  gap: 1%
+  gap: 4px
 /*background-color: white;*/
 
 /* === LVL Empty === */
 .ExpBar
   width: 20%
   background-color: $bar-empty-col
-
-/* === CURRENT LVL FILLED === */
-.ExpBar.filled
-  background-color: $bar-filled-col
-  box-shadow: 0 0 11px 0 #11E9FF8C
+  overflow: hidden
 
 /* === ROUND first & last === */
 .ExpBar:first-child
@@ -123,14 +119,21 @@ $bar-complete-col: #16fd11
 .ExpBar:last-child
   border-radius: 0 1rem 1rem 0
 
+/* === CURRENT LVL FILLED === */
+.ExpBar.filled
+  background-color: $bar-filled-col
+  box-shadow: 0 0 11px 0 #11E9FF8C
+  //overflow: hidden
+
+/* === COMPLETED === */
+.ExpBar.completed
+  background-color: $bar-complete-col
+  box-shadow: 0 0 11px 0 #16FF118C
+
 /* === CURRENT FILLED === */
 .currentFilled
   height: 100%
   background-color: $bar-filled-col
   box-shadow: 0 0 11px 0 #11E9FF8C
 
-/* === COMPLETED === */
-.ExpBar.completed
-  background-color: $bar-complete-col
-  box-shadow: 0 0 11px 0 #16FF118C
 

@@ -11,20 +11,34 @@ interface JobCardProps {
 
 function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLevel }: JobCardProps) {
 
+    const maxLvlExpCalc: number = jobTotalLvls * jobExpPerLevel
+
+    function toNextLvlEXPCalc(): number {
+        // Calculate the experience needed to the next level
+        const remainderXP = jobCurrentLvl % jobExpPerLevel;
+        // If current experience is exactly at the level cap, they need one full level of experience to level up
+        if (remainderXP === 0) {
+            return jobExpPerLevel;
+        } else {
+            // Otherwise, they need (jobExpPerLevel - remainderXP) more XP to level up
+            return jobExpPerLevel - remainderXP;
+        }
+    }
+
     return (
         // create Job Card
         // if DISABLED = ADD Disabled Class; if (CurrentLvl === TotalLvl) = ADD Completed class
         <div className={`job-card 
         
         ${ jobLocked ? "job-card-disabled" : ""} 
-        ${ jobCurrentLvl >= jobTotalLvls ? "job-max-card" : ""}
+        ${ jobCurrentLvl >= maxLvlExpCalc ? "job-max-card" : ""}
         
         `}>
             <div className="job-card-container">
 
                 {
                     // if (CurrentLvl === TotalLvl) then create Name + CROWN + div to wrap it together
-                    jobCurrentLvl >= jobTotalLvls ? (
+                    jobCurrentLvl >= maxLvlExpCalc ? (
                         <div className="job-maxed-name-wrapper">
                             <h3 className="job-max-card-name">{jobName}</h3>
                             <img src={CrownIconSVG} alt="crownSVG" className="CrownIconSVG"/>
@@ -39,19 +53,19 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
                     jobLocked ? (
                         <h5 className="job-card-progress">Недоступно</h5>
                     ) : // if (jobCurrentLvl === jobTotalLvls) then render text about Completing and call EXPBar
-                        jobCurrentLvl >= jobTotalLvls ? (
+                        jobCurrentLvl >= maxLvlExpCalc ? (
                         <>
                         <h5 className="job-card-progress">У вас максимальний рівень</h5>
                             <div className="job-card-exp">
-                                {createExpBar(jobTotalLvls, jobCurrentLvl)}
+                                {createExpBar(jobTotalLvls, jobCurrentLvl, jobExpPerLevel)}
                             </div>
                         </>
                     ) : // IF job isn't locked and completed, render this
                             (
                     <>
-                     <h5 className="job-card-progress">До наступного рівня необхідно ще 1200 Exp</h5>
+                     <h5 className="job-card-progress">До наступного рівня необхідно ще {toNextLvlEXPCalc()} Exp</h5>
                           <div className="job-card-exp">
-                            {createExpBar(jobTotalLvls, jobCurrentLvl)}
+                            {createExpBar(jobTotalLvls, jobCurrentLvl, jobExpPerLevel)}
                           </div>
                     </>
                 )
@@ -104,35 +118,35 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
     // )
 
     // create EXP BAR
-    function createExpBar( jobTotalLvls: number, currentLvl: number) {
+    function createExpBar( jobTotalLvls: number, currentLvl: number, jobExpPerLevel: number) {
+
             // create ARRAY (of divs with uniq index) ACCORDING jobTotalLVLs lenght
-            return Array.from({ length: jobTotalLvls }, (_, index) => {
+        return Array.from({ length: jobTotalLvls }, (_, index) => {
 
-                // if Current lvl is 2, then DIVs with index lower than 2, would get fully filled
-                const isFilled = index < Math.floor(currentLvl);
+            const ExpToMaxLvl: number = jobTotalLvls * jobExpPerLevel;
+            const ExpBarStart: number = index * jobExpPerLevel; // X -> Y     ; [X - Y][X+1 - Y+1] etc.;
+            const ExpBarEnd: number = (index + 1) * jobExpPerLevel; // X <- Y ; [0 - 20][20 - 40] etc.;
 
-                // here we find Current DIV to paing progress
-                const isCurrentFilled = index === Math.floor(currentLvl);
+            let filledBar: number = 0;
+            if( currentLvl >= ExpBarEnd ) {
+                filledBar = 100;
+            } else if ( currentLvl >= ExpBarStart) {
+                filledBar = ((currentLvl - ExpBarStart) / jobExpPerLevel) * 100
+            }
 
-                // width calculator for current progress
-                const currentLVLperc:number = currentLvl % 1 * 100;
-
-                return (
-                    <div key={index}
-                        className={`ExpBar 
-                        ${isFilled ? 'filled' : ''} 
-                        ${currentLvl >= jobTotalLvls ? 'completed' : ''}
-                        `}
-                    >
-                        <div className={`
-                            ${isCurrentFilled ? `currentFilled` : ''}
-                                        `}
-                             style={{width: `${currentLVLperc}%`}}
-                        >
-                        </div>
-                    </div>
-                );
-            });
+            console.log(currentLvl >= ExpToMaxLvl, currentLvl, ExpToMaxLvl)
+            return (
+                <div key={index} className={`ExpBar 
+                ${ filledBar === 100 ? 'filled' : ''}
+                ${ currentLvl >= ExpToMaxLvl ? 'completed' : ''}
+                `}>
+                    <div
+                        className={`${ currentLvl >= ExpToMaxLvl ? '' : 'currentFilled'}`}
+                        style={{ width: `${filledBar}%` }}
+                    ></div>
+                </div>
+            );
+        });
     }
 }
 
