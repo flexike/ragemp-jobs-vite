@@ -13,38 +13,32 @@ $bar-complete-col: #16fd11
   transition: all ease-out 200ms
 
 
-.job-card-container
-  width: 100%
-  padding-inline: 15px
-  line-height: 24px
+  .job-card-container
+    width: 100%
+    padding-inline: 15px
+    line-height: 24px
 
 
-/* === JOB CARD OTHERS PROPS === */
-.job-card-name
-  margin-top: 14px
-  width: 100%
-  font-family: "Gilroy-SemiBold", serif
-  font-weight: 400
-  font-size: 20px
+    /* === JOB CARD OTHERS PROPS === */
+    .job-card-name
+      margin-top: 14px
+      width: 100%
+      font-family: "Gilroy-SemiBold", serif
+      font-weight: 400
+      font-size: 20px
 
-.job-card-progress
-  margin-top: 41px
-  width: 100%
-  font-family: "Gilroy-Regular", sans-serif
-  font-weight: 100
-  font-size: 14px
-  color: rgba(255,255,255, 55%)
-
-.job-card-exp
-  margin-top: 8px
-  width: 100%
-  line-height: 0
+    .job-card-progress
+      margin-top: 41px
+      width: 100%
+      font-family: "Gilroy-Regular", sans-serif
+      font-weight: 100
+      font-size: 14px
+      color: rgba(255,255,255, 55%)
 
 .job-card:hover
   background: radial-gradient(circle, rgb(64, 64, 64) 5%, rgb(52, 52, 52) 100%)
   border: 1px solid #525252
 
-.job-card:hover
   .job-card-progress
     color: white
 
@@ -84,19 +78,20 @@ $bar-complete-col: #16fd11
   align-items: center
   gap: 0.5rem
 
-.job-max-card-name
-  font-family: "Gilroy SemiBold", sans-serif
-  font-weight: 400
-  font-size: 20px
-  height: 1rem
+  .job-max-card-name
+    font-family: "Gilroy SemiBold", sans-serif
+    font-weight: 400
+    font-size: 20px
+    height: 1rem
 
-.CrownIconSVG
-  margin-top: 0.6rem
-  width: 1.3rem
-  height: 1.1rem
+  .CrownIconSVG
+    margin-top: 0.6rem
+    width: 1.3rem
+    height: 1.1rem
 
 /* === JOB EXP === */
 .job-card-exp
+  margin-top: 8px
   width: 100%
   height: 0.3rem
 
@@ -104,36 +99,33 @@ $bar-complete-col: #16fd11
   justify-content: space-between
   flex-direction: row
   gap: 4px
-/*background-color: white;*/
 
-/* === LVL Empty === */
-.ExpBar
-  width: 20%
-  background-color: $bar-empty-col
-  overflow: hidden
+  /* === LVL Empty === */
+  .ExpBar
+    width: 20%
+    background-color: $bar-empty-col
+    overflow: hidden
 
-/* === ROUND first & last === */
-.ExpBar:first-child
-  border-radius: 1rem 0 0 1rem
+  /* === ROUND first & last === */
+  .ExpBar:first-child
+    border-radius: 1rem 0 0 1rem
 
-.ExpBar:last-child
-  border-radius: 0 1rem 1rem 0
+  .ExpBar:last-child
+    border-radius: 0 1rem 1rem 0
 
-/* === CURRENT LVL FILLED === */
-.ExpBar.filled
-  background-color: $bar-filled-col
-  box-shadow: 0 0 11px 0 #11E9FF8C
-  //overflow: hidden
+  /* === CURRENT LVL FILLED === */
+  & .filled
+    background-color: $bar-filled-col
+    box-shadow: 0 0 11px 0 #11E9FF8C
+    //overflow: hidden
 
-/* === COMPLETED === */
-.ExpBar.completed
-  background-color: $bar-complete-col
-  box-shadow: 0 0 11px 0 #16FF118C
+  /* === COMPLETED === */
+  & .completed
+    background-color: $bar-complete-col
+    box-shadow: 0 0 11px 0 #16FF118C
 
-/* === CURRENT FILLED === */
-.currentFilled
-  height: 100%
-  background-color: $bar-filled-col
-  box-shadow: 0 0 11px 0 #11E9FF8C
-
-
+  /* === CURRENT FILLED === */
+  .currentFilled
+    height: 100%
+    background-color: $bar-filled-col
+    box-shadow: 0 0 11px 0 #11E9FF8C
