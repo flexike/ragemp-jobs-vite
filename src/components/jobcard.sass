@@ -12,6 +12,14 @@ $bar-complete-col: #16fd11
   color: white
   transition: all ease-out 200ms
 
+  &:hover
+    background: radial-gradient(circle, rgb(64, 64, 64) 5%, rgb(52, 52, 52) 100%)
+    border: 1px solid #525252
+
+  &:hover
+    .job-card-container
+      .job-card-progress
+        color: white
 
   .job-card-container
     width: 100%
@@ -34,13 +42,6 @@ $bar-complete-col: #16fd11
       font-weight: 100
       font-size: 14px
       color: rgba(255,255,255, 55%)
-
-.job-card:hover
-  background: radial-gradient(circle, rgb(64, 64, 64) 5%, rgb(52, 52, 52) 100%)
-  border: 1px solid #525252
-
-  .job-card-progress
-    color: white
 
 /* === DISABLED === */
 .job-card-disabled
@@ -107,10 +108,10 @@ $bar-complete-col: #16fd11
     overflow: hidden
 
   /* === ROUND first & last === */
-  .ExpBar:first-child
+  & :first-child
     border-radius: 1rem 0 0 1rem
 
-  .ExpBar:last-child
+  & :last-child
     border-radius: 0 1rem 1rem 0
 
   /* === CURRENT LVL FILLED === */
