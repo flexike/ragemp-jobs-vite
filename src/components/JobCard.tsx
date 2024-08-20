@@ -124,7 +124,7 @@ function JobCard({ jobName, jobLocked, jobTotalLvls, jobCurrentLvl, jobExpPerLev
         return Array.from({ length: jobTotalLvls }, (_, index) => {
 
             const ExpToMaxLvl: number = jobTotalLvls * jobExpPerLevel;
-            const ExpBarStart: number = index * jobExpPerLevel; // X -> Y     ; [X - Y][X+1 - Y+1] etc.;
+            const ExpBarStart: number = index * jobExpPerLevel; //     X -> Y ; [X - Y][X+1 - Y+1] etc.;
             const ExpBarEnd: number = (index + 1) * jobExpPerLevel; // X <- Y ; [0 - 20][20 - 40] etc.;
 
             let filledBar: number = 0;
